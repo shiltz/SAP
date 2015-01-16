@@ -1,0 +1,30 @@
+apply plugin: 'java'
+apply plugin: 'war'
+apply plugin: 'idea'
+
+sourceCompatibility=1.7
+def glassfishDomainDir='C:\\glassfish4\\glassfish\\domains\\domain1'
+
+
+
+
+repositories{
+
+	mavenLocal();
+	mavenCentral();
+
+}
+
+dependencies {
+
+	compile 'com.sun.faces:jsf-api:2.2.9'
+	compile 'org.primefaces:primefaces:5.1'
+	compile 'javax.enterprise:cdi-api:1.2'
+
+}
+
+task copy(type:Copy) {
+	from 'build\\libs\\SAP.war'
+	into glassfishDomainDir+'\\autodeploy'
+
+}

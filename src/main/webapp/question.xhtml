@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:pm="http://primefaces.org/mobile">
+<f:view renderKitId="PRIMEFACES_MOBILE">
+
+    <h:head>
+
+    </h:head>
+
+    <h:body>
+        <pm:page id="mainPageID">
+            <pm:header title="BLAH-BLAH Exam Center"/>
+            <h:form>
+            <pm:content>
+
+                    <p:panelGrid columns="2" styleClass="ui-responsive">
+                    <pm:field>
+                        <p:outputLabel value="#{msgs.question} #{exam.currentState.questionNumber}"/>
+                    </pm:field>
+                    <pm:field>
+                        <p:selectBooleanCheckbox id="markedID" itemLabel="#{msgs.marked}" value="#{exam.currentState.marked}"/>
+                    </pm:field>
+
+                    <p:outputLabel>#{exam.currentState.question.question}</p:outputLabel>
+                    <h:outputFormat value=""/>
+
+
+
+                    <pm:field>
+                        <p:outputLabel for="answers" value="Select one:"/>
+                        <p:selectOneRadio id="answers" value="#{exam.currentState.selectedStringAnswer}">
+                            <f:selectItems value="#{exam.currentState.question.possibleAnswers}" var="c"
+                                          itemLabel="#{c.answer}" itemValue="#{c.answer}"  />
+                        </p:selectOneRadio>
+                    </pm:field>
+                    <p:outputLabel/>
+                    <p:outputLabel/>
+
+
+                    </p:panelGrid>
+
+            </pm:content>
+
+            <pm:footer>
+                <p:panelGrid columns="2" styleClass="ui-responsive">
+                    <h:outputFormat value=""/>
+                    <pm:field>
+                        <p:panelGrid columns="4" styleClass="ui-responsive">
+                            <p:commandButton type="submit" value="#{msgs.finished}"/>
+                            <p:commandButton type="submit" value="#{msgs.review}" action="#{navigator.getReviewedOutcome}"
+                                                ajax="false"/>
+                            <p:commandButton type="submit" value="#{msgs.previous}" actionListener="#{exam.getPreviousState}"
+                                                ajax="false"/>
+                            <p:commandButton type="submit"  value="#{msgs.next}" actionListener="#{exam.getNextState}"
+                                                ajax="false" />
+                        </p:panelGrid>
+                    </pm:field>
+                </p:panelGrid>
+
+            </pm:footer>
+        </h:form>
+        </pm:page>
+
+
+    </h:body>
+</f:view>
+</html>
