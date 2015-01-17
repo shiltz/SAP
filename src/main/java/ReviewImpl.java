@@ -1,5 +1,7 @@
+import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
+import java.io.Serializable;
 import java.util.List;
 
 /** The backing bean for review.xhtml
@@ -7,7 +9,8 @@ import java.util.List;
  */
 
 @Named("review")
-public class ReviewImpl {
+@SessionScoped
+public class ReviewImpl implements Serializable{
 
     @Inject
     private Exam exam;

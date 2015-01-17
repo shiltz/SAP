@@ -8,8 +8,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+
 
 /** This is the backing bean for question.xhtml
  *
@@ -150,7 +149,13 @@ public class ExamImpl implements Serializable,Exam{
     }
 
 
-
+    /**
+     * Set this object's current state
+     * @param state The current state to set
+     */
+    public void setCurrentState(State state){
+        this.currentState = state;
+    }
 
     /**
      * TO-DO

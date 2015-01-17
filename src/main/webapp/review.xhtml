@@ -3,7 +3,6 @@
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:p="http://primefaces.org/ui"
       xmlns:pm="http://primefaces.org/mobile">
@@ -20,26 +19,30 @@
 
             <pm:content>
 
+            <h:form>
+                <p:dataList var="state" value="#{review.states}">
+                    <f:facet name="header">
+                        Summary
+                    </f:facet>
 
-            <h2 class="first">Column Toggle</h2>
+                    <p:commandLink ajax="false" action="#{navigator.getQuestionOutcome}">
+                        <f:setPropertyActionListener value="#{state}" target="#{exam.currentState}"/>
 
-            <p:dataTable value="" tableStyleClass="ui-table-reflow">
-                <p:column headerText="Id" >
-                    <h:outputText value="sd" />
-                </p:column>
+                        <h2>#{msgs.question} #{state.questionNumber}</h2>
+                        <p>#{state.question.question}</p>
+                        <p>#{state.selectedStringAnswer}</p>
+                        <p><strong>#{state.marked}</strong></p>
 
-                <p:column headerText="Year">
-                    <h:outputText value="sd" />
-                </p:column>
+                    </p:commandLink>
+                    <f:facet name=""/>
 
-                <p:column headerText="Brand">
-                    <h:outputText value="sd" />
-                </p:column>
+                </p:dataList>
+            </h:form>
 
-                <p:column headerText="Color">
-                    <h:outputText value="sd"/>
-                </p:column>
-            </p:dataTable>
+
+
+
+
             </pm:content>
             <pm:footer>
 

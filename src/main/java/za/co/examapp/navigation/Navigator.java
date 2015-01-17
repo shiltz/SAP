@@ -19,4 +19,8 @@ public class Navigator {
 
         return "success";
     }
+
+    public String getQuestionOutcome(){
+        return "success";
+    }
 }
